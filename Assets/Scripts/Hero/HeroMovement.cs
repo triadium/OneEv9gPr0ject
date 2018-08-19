@@ -28,11 +28,11 @@ namespace OneEv9gPr0ject
 
                 if (_controllerState.IsMovingLeft) {
                     // TODO: make the parameter an enumeration
-                    _model.Turn(true);
+                    _model.Turn(toLeft: true);
                     _model.Velocity = Vector2.left * _settings.MoveSpeed;
                 }
                 else if (_controllerState.IsMovingRight) {
-                    _model.Turn(false);
+                    _model.Turn(toLeft: false);
                     _model.Velocity = Vector2.right * _settings.MoveSpeed;
                 }
                 // else { noop }

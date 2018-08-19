@@ -9,7 +9,6 @@ namespace OneEv9gPr0ject
     public class HeroAnimationState
     {
         private readonly Animator _animator;
-        private readonly HeroModel _model;
 
         public enum State
         {

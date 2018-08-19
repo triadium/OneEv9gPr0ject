@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace OneEv9gPr0ject
 {
     /// <summary>
-    /// Representation model
+    /// Hero representation model
     /// Splitting into functions and MonoBehaviour
     /// </summary>
     /// <remarks>
