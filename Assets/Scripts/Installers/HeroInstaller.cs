@@ -10,14 +10,15 @@ namespace OneEv9gPr0ject
 
         public override void InstallBindings() {
             Container.Bind<HeroModel>().AsSingle()
-                .WithArguments(_settings.Rigidbody,
+                .WithArguments(_settings.Collider,
+                               _settings.Rigidbody,
                                _settings.Renderer);
 
-            Container.Bind<HeroControllerState>().AsSingle();            
+            // Container.Bind<HeroControllerState>().AsSingle();            
+            // Container.BindInterfacesTo<HeroController>().AsSingle();
             Container.Bind<HeroAnimationState>().AsSingle().WithArguments(_settings.Animator);
 
             Container.BindInterfacesTo<HeroAnimatorProcessor>().AsSingle();
-            Container.BindInterfacesTo<HeroController>().AsSingle();
             Container.BindInterfacesTo<HeroMovement>().AsSingle();
 
             InstallSignals();
@@ -39,6 +40,7 @@ namespace OneEv9gPr0ject
         public class Settings
         {
             public Animator Animator;
+            public Collider2D Collider;
             public Rigidbody2D Rigidbody;
             public SpriteRenderer Renderer;
         }

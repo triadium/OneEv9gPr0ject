@@ -18,6 +18,6 @@ namespace OneEv9gPr0ject
 
         public Bounds Bounds {
             get { return _collider.bounds; }
-        }
+        }       
     }
 }

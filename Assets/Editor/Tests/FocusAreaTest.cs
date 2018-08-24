@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.TestTools.Utils;
 using NUnit.Framework;
-using System.Collections;
 using System;
 
 namespace OneEv9gPr0ject.Tests
@@ -25,11 +25,11 @@ namespace OneEv9gPr0ject.Tests
 
             [Test]
             public void Throws_Exception_For_Every_LessOrEqual_Zero_Value_Dimension() {
-                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.zero, maxBounds, targetBounds));
-                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.left, maxBounds, targetBounds));
-                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.right, maxBounds, targetBounds));
-                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.up, maxBounds, targetBounds));
-                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.down, maxBounds, targetBounds));
+                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.zero, maxBounds, targetBounds), "Size: 0 x 0");
+                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.left, maxBounds, targetBounds), "Size: -1 x 0");
+                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.right, maxBounds, targetBounds), "Size: 0 x 1");
+                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.up, maxBounds, targetBounds), "Size: 0 x 1");
+                Assert.Throws<ArgumentException>(() => new CameraFollow.FocusArea(Vector2.down, maxBounds, targetBounds), "Size: 0 x-1");
             }
 
             [Test]
@@ -95,96 +95,105 @@ namespace OneEv9gPr0ject.Tests
             }
 
             [Test]
+            public void Fully_Within_MaxBounds_Top() {
+                maxBounds.center = new Vector2(0, -maxBounds.size.y / 2);
+                var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
+                Bounds bounds = focusArea.bounds;
+                Assert.IsTrue(maxBounds.ContainBounds(bounds));
+            }
+
+            [Test]
+            public void Fully_Within_MaxBounds_Left() {
+                maxBounds.center = new Vector2(-maxBounds.size.x / 2, 0);
+                var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
+                Bounds bounds = focusArea.bounds;
+                Assert.IsTrue(maxBounds.ContainBounds(bounds));
+            }
+
+            [Test]
+            public void Fully_Within_MaxBounds_Right() {
+                maxBounds.center = new Vector2(maxBounds.size.x / 2, 0);
+                var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
+                Bounds bounds = focusArea.bounds;
+                Assert.IsTrue(maxBounds.ContainBounds(bounds));
+            }
+
+            [Test]
+            public void Fully_Within_MaxBounds_Bottom() {
+                maxBounds.center = new Vector2(0, maxBounds.size.y / 2);
+                var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
+                Bounds bounds = focusArea.bounds;
+                Assert.IsTrue(maxBounds.ContainBounds(bounds));
+            }
+
+            [Test]
             public void Velocity_Equals_Zero_For_TargetBounds_Within() {
                 targetBounds.center = new Vector2(50, 50);
                 var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
-                // FIXME: check components with delta?
-                Assert.AreEqual(focusArea.velocity, Vector2.zero);
+                Assert.IsTrue(Vector2EqualityComparer.Instance.Equals(focusArea.velocity, Vector2.zero), "Velocity is zero");
             }
 
             [Test]
             public void Velocity_Not_Zero_For_TargetBounds_Outside_Or_At_Intersection() {
-                targetBounds.center = new Vector2(290, 290);
+                targetBounds.center = maxBounds.size;
                 var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
-                // FIXME: check components with delta?
-                Assert.AreNotEqual(focusArea.velocity, Vector2.zero);
+                Assert.IsFalse(Vector2EqualityComparer.Instance.Equals(focusArea.velocity, Vector2.zero), "Velocity is not zero");
+            }
+
+            [Test]
+            public void Velocity_Is_Directed_To_Target_Corner_LeftTop() {
+                targetBounds.center = new Vector2(-maxBounds.size.x, -maxBounds.size.y);
+                var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
+                Assert.Negative(focusArea.velocity.x, "Velocity X");
+                Assert.Negative(focusArea.velocity.y, "Velocity Y");
+            }
+
+            [Test]
+            public void Velocity_Is_Directed_To_Target_Corner_LeftBottom() {
+                targetBounds.center = new Vector2(-maxBounds.size.x, maxBounds.size.y);
+                var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
+                Assert.Negative(focusArea.velocity.x, "Velocity X");
+                Assert.Positive(focusArea.velocity.y, "Velocity Y");
+            }
+
+            [Test]
+            public void Velocity_Is_Directed_To_Target_Corner_RightBottom() {
+                targetBounds.center = new Vector2(maxBounds.size.x, maxBounds.size.y);
+                var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
+                Assert.Positive(focusArea.velocity.x, "Velocity X");
+                Assert.Positive(focusArea.velocity.y, "Velocity Y");
+            }
+
+            [Test]
+            public void Velocity_Is_Directed_To_Target_Corner_RightTop() {
+                targetBounds.center = new Vector2(maxBounds.size.x, -maxBounds.size.y);
+                var focusArea = new CameraFollow.FocusArea(size, maxBounds, targetBounds);
+                Assert.Positive(focusArea.velocity.x, "Velocity X");
+                Assert.Negative(focusArea.velocity.y, "Velocity Y");
             }
         }
 
+        public class UpdateTest
+        {
+            Bounds maxBounds;
+            Bounds targetBounds;
+            Vector2 size;
+
+            [SetUp]
+            public void SetupEveryTest() {
+                size = new Vector2(30, 30);
+                maxBounds.center = Vector2.zero;
+                maxBounds.size = new Vector2(300, 300);
+                targetBounds.center = Vector2.zero;
+                targetBounds.size = new Vector2(10, 10);
+            }
+        }
 
         //[UnityTest]
         //public IEnumerator NewTestScriptWithEnumeratorPasses() {
         //    yield return null;
         //}
-        
-        public class CameraFollow
-        {
-            public struct FocusArea
-            {
-                private readonly Bounds _maxBounds;
 
-                public Vector2 size;
-                public Vector2 center;
-                public Bounds bounds;
-                public Vector2 velocity;
-                
-
-                private float CalculateShift(float outerMin, float outerMax, float insideMin, float insideMax) {
-                    float diffMin = outerMin - insideMin;
-                    float diffMax = outerMax - insideMax;
-
-                    float shift = 0;
-
-                    if (diffMin > 0) {
-                        shift = diffMin;
-                    }
-                    else if (diffMax < 0) {
-                        shift = diffMax;
-                    }
-                    // else { ok }
-
-                    return shift;
-                }
-
-                public FocusArea(Vector2 iniSize, Bounds maxBounds, Bounds targetBounds) {
-                    size = iniSize;
-
-                    if (size.x <= 0 || size.y <= 0) {
-                        throw new ArgumentException("Must be greater than zero", "size");
-                    }
-                    else if (maxBounds.size.x <= size.x || maxBounds.size.y <= size.y) {
-                        throw new ArgumentException("Must be greater than size", "maxBounds");
-                    }
-                    else if (targetBounds.size.x > size.x || targetBounds.size.y > size.y) {
-                        throw new ArgumentException("Must be less or equal to size", "targetBounds");
-                    }
-                    // else { ok }
-
-                    center = targetBounds.center;
-                    velocity = Vector2.zero;
-                    bounds = new Bounds(center, size);
-
-                    _maxBounds = maxBounds;
-
-                    float boundsShiftX = CalculateShift(maxBounds.min.x, maxBounds.max.x, bounds.min.x, bounds.max.x);
-                    float boundsShiftY = CalculateShift(maxBounds.min.y, maxBounds.max.y, bounds.min.y, bounds.max.y);                    
-
-                    // FIXME: checking a float value without epsilon?
-                    if (boundsShiftX != 0 && boundsShiftY != 0) {
-                        center.x += boundsShiftX;
-                        center.y += boundsShiftY;
-                        bounds = new Bounds(center, size);
-                    }
-                    // else { ok }
-
-                    float shiftX = CalculateShift(bounds.min.x, bounds.max.x, targetBounds.min.x, targetBounds.max.x);
-                    float shiftY = CalculateShift(bounds.min.y, bounds.max.y, targetBounds.min.y, targetBounds.max.y);
-                    velocity.x = shiftX;
-                    velocity.y = shiftY;
-                }
-
-            }
-        }
     }
 
     public static class BoundsExtension

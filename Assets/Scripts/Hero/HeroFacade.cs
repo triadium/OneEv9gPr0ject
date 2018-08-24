@@ -12,10 +12,18 @@ namespace OneEv9gPr0ject
             _model = model;
         }
 
+        public Bounds Bounds
+        {
+            get { return _model.Bounds;  }
+        }
+
         void Update() {
-            //if (_model.IsMoving) {            
+            //if (_model.IsMoving) {
+            //    Debug.Log("Moving");
             //}
-            //else if (_model.IsStunned) { }
+            //else if (_model.IsStunned) {
+            //    Debug.Log("Moving");
+            //}
         }
 
         public void Spawn() {
@@ -25,5 +33,8 @@ namespace OneEv9gPr0ject
         public void Die() {
 
         }
+
+        public bool IsReady { get { return _model.IsReady;  } }
+
     }
 }

@@ -1,0 +1,10 @@
+{
+    "name": "Main",
+    "references": [
+        "Zenject"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

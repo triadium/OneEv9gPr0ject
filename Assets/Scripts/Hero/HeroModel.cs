@@ -11,10 +11,12 @@ namespace OneEv9gPr0ject
     /// </remarks>
     public class HeroModel
     {
+        private readonly Collider2D _collider;
         private readonly Rigidbody2D _rigidbody;
         private readonly SpriteRenderer _renderer;
 
-        public HeroModel(Rigidbody2D rigidbody, SpriteRenderer renderer) {
+        public HeroModel(Collider2D collider, Rigidbody2D rigidbody, SpriteRenderer renderer) {
+            _collider = collider;
             _rigidbody = rigidbody;
             _renderer = renderer;
 
@@ -52,6 +54,11 @@ namespace OneEv9gPr0ject
         {
             get { return _rigidbody.velocity; }
             set { _rigidbody.velocity = value; }
+        }
+
+        public Bounds Bounds
+        {
+            get { return _collider.bounds; }
         }
 
         /// <summary>

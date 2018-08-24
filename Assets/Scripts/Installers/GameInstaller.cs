@@ -19,8 +19,14 @@ namespace OneEv9gPr0ject
         private void InstallHero() {
             Container.Bind<HeroFacade>()
                 .FromComponentInNewPrefab(_settings.HeroPrefab)
-                .UnderTransformGroup("Hero")
+                //.UnderTransformGroup("Hero")
                 .AsSingle();
+
+            //Container.Bind<BattleFieldFacade>()
+            //    .FromComponentInHierarchy()
+
+            Container.Bind<HeroControllerState>().AsSingle();            
+            Container.BindInterfacesTo<HeroController>().AsSingle();
         }
 
         [Serializable]
