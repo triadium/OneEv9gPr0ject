@@ -9,11 +9,9 @@ namespace OneEv9gPr0ject
     public class BattleFieldModel
     {
         private readonly Collider2D _collider;
-        private readonly SpriteRenderer _renderer;
 
-        public BattleFieldModel(Collider2D collider, SpriteRenderer renderer) {
+        public BattleFieldModel(Collider2D collider) {
             _collider = collider;
-            _renderer = renderer;
         }
 
         public Bounds Bounds {

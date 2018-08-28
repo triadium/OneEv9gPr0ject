@@ -25,29 +25,31 @@ namespace OneEv9gPr0ject
         }
 
         public void SetState(State state) {
-            Reset();
+            return;
 
-            switch (state) {
-                case State.Spawn:
-                    _animator.SetBool("IsSpawning", true);
-                    break;
-                case State.Ready:
-                    _animator.SetBool("IsReady", true);
-                    break;
-                case State.Idle:
-                    _animator.SetBool("IsIdle", true);
-                    break;
-                case State.Stunned:
-                    _animator.SetBool("IsStunned", true);
-                    break;
-                case State.Move:
-                    _animator.SetBool("IsMoving", true);
-                    break;
-                case State.Die:
-                    _animator.SetBool("IsDead", true);
-                    break;
-                // default: noop break;
-            }
+            //Reset();
+
+            //switch (state) {
+            //    case State.Spawn:
+            //        _animator.SetBool("IsSpawning", true);
+            //        break;
+            //    case State.Ready:
+            //        _animator.SetBool("IsReady", true);
+            //        break;
+            //    case State.Idle:
+            //        _animator.SetBool("IsIdle", true);
+            //        break;
+            //    case State.Stunned:
+            //        _animator.SetBool("IsStunned", true);
+            //        break;
+            //    case State.Move:
+            //        _animator.SetBool("IsMoving", true);
+            //        break;
+            //    case State.Die:
+            //        _animator.SetBool("IsDead", true);
+            //        break;
+            //    // default: noop break;
+            //}
         }
 
         private void Reset() {

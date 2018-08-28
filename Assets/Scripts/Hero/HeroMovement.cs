@@ -8,7 +8,7 @@ namespace OneEv9gPr0ject
     /// Controlling a movement velocity and 
     /// representation model values
     /// </summary>
-    public class HeroMovement : IFixedTickable
+    public class HeroMovement : ITickable // IFixedTickable
     {
         private readonly HeroControllerState _controllerState;
         private readonly HeroModel _model;
@@ -23,7 +23,7 @@ namespace OneEv9gPr0ject
             _settings = settings;
         }
 
-        public void FixedTick() {
+        public void Tick() { //FixedTick() {
             if(!_model.IsSpawning && !_model.IsStunned && !_model.IsDying && !_model.IsDead) {
 
                 if (_controllerState.IsMovingLeft) {

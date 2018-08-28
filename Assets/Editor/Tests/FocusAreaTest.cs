@@ -17,10 +17,8 @@ namespace OneEv9gPr0ject.Tests
             [SetUp]
             public void SetupEveryTest() {
                 size = new Vector2(30, 30);
-                maxBounds.center = Vector2.zero;
-                maxBounds.size = new Vector2(100, 100);
-                targetBounds.center = Vector2.zero;
-                targetBounds.size = new Vector2(10, 10);
+                maxBounds = new Bounds(Vector2.zero, new Vector2(100, 100));
+                targetBounds = new Bounds(Vector2.zero, new Vector2(10, 10));
             }
 
             [Test]
@@ -56,10 +54,8 @@ namespace OneEv9gPr0ject.Tests
             [SetUp]
             public void SetupEveryTest() {
                 size = new Vector2(30, 30);
-                maxBounds.center = Vector2.zero;
-                maxBounds.size = new Vector2(300, 300);
-                targetBounds.center = Vector2.zero;
-                targetBounds.size = new Vector2(10, 10);
+                maxBounds = new Bounds(Vector2.zero, new Vector2(300, 300));
+                targetBounds = new Bounds(Vector2.zero, new Vector2(10, 10));
             }
 
             [Test]
@@ -182,10 +178,8 @@ namespace OneEv9gPr0ject.Tests
             [SetUp]
             public void SetupEveryTest() {
                 size = new Vector2(30, 30);
-                maxBounds.center = Vector2.zero;
-                maxBounds.size = new Vector2(300, 300);
-                targetBounds.center = Vector2.zero;
-                targetBounds.size = new Vector2(10, 10);
+                maxBounds = new Bounds(Vector2.zero, new Vector2(300, 300));
+                targetBounds = new Bounds(Vector2.zero, new Vector2(10, 10));
             }
         }
 

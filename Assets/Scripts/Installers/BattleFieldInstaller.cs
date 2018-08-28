@@ -10,15 +10,13 @@ namespace OneEv9gPr0ject
 
         public override void InstallBindings() {
             Container.Bind<BattleFieldModel>().AsSingle()
-                .WithArguments(_settings.Collider,
-                               _settings.Renderer);
+                .WithArguments(_settings.Collider);
         }
 
         [Serializable]
         public class Settings
         {
             public Collider2D Collider;
-            public SpriteRenderer Renderer;
         }
     }
 }
