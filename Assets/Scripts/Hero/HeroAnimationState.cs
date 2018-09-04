@@ -25,8 +25,7 @@ namespace OneEv9gPr0ject
         }
 
         public void SetState(State state) {
-            return;
-
+            
             //Reset();
 
             //switch (state) {
@@ -48,7 +47,7 @@ namespace OneEv9gPr0ject
             //    case State.Die:
             //        _animator.SetBool("IsDead", true);
             //        break;
-            //    // default: noop break;
+            //        // default: noop break;
             //}
         }
 

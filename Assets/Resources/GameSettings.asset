@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   GameInstaller:
-    HeroPrefab: {fileID: 1377712981335428, guid: 9def987cfcb03944eb0e01031b14fe0c,
+    HeroPrefab: {fileID: 1280659308698970, guid: 879201b70a7e305408269c71e02a85a0,
       type: 2}
     PowerOrbPrefab: {fileID: 0}
     MonsterPrefab: {fileID: 0}
