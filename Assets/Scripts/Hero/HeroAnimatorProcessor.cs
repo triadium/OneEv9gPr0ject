@@ -1,4 +1,4 @@
-﻿using System;
+﻿using UnityEngine;
 using Zenject;
 
 namespace OneEv9gPr0ject
@@ -8,58 +8,35 @@ namespace OneEv9gPr0ject
     /// </summary>
     public class HeroAnimatorProcessor : ITickable
     {
-        // FIXME: prefix `hero` is removed - 
-        // the way to not rewrite the code 
-        // when generating abstract classes or interfaces
-        private readonly HeroAnimationState _animationState;
+        private readonly Animator _animator;
         private readonly HeroModel _model;
 
-        public HeroAnimatorProcessor(HeroAnimationState animationState, HeroModel model) {
-            _animationState = animationState;
+        public HeroAnimatorProcessor(Animator animator, HeroModel model) {
+            _animator = animator;
             _model = model;
         }
 
         public void Tick() {
-            Spawn();
-            Idle();
             Move();
-            Freeze();
-            Die();
-        }
-
-        private void Spawn() {
-            if (_model.IsReady) {
-                _animationState.SetState(HeroAnimationState.State.Ready);
-            }
-            // else { noop }
-        }
-
-        private void Idle() {
-            if (!_model.IsMoving) {
-                _animationState.SetState(HeroAnimationState.State.Idle);
-            }
-            // else { noop }
+            Actions();
+            Dead();
         }
 
         private void Move() {
-            if (_model.IsMoving) {
-                _animationState.SetState(HeroAnimationState.State.Move);
-            }
-            // else { noop }
+            _animator.SetBool("IsMoving", _model.IsMoving);
+        }
+    
+        private void Actions() {
+            _animator.SetBool("IsPunching", _model.IsPunching);
+            _animator.SetBool("IsKicking", _model.IsKicking);
         }
 
-        private void Freeze() {
-            if (_model.IsStunned) {
-                _animationState.SetState(HeroAnimationState.State.Stunned);
+        private void Dead() {
+            if (_model.IsDying && !_animator.GetCurrentAnimatorStateInfo(0).IsName("Hero Dying Animation")) {
+                _animator.SetTrigger("Died");
             }
-            // else { noop }
-        }
-
-        private void Die() {
-            if (_model.IsDead) {
-                _animationState.SetState(HeroAnimationState.State.Die);
-            }
-            // else { noop }
+            // else { skip }
         }
     }
 }
+

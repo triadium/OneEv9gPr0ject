@@ -17,24 +17,8 @@ namespace OneEv9gPr0ject
             get { return _model.Bounds;  }
         }
 
-        void Update() {
-            //if (_model.IsMoving) {
-            //    Debug.Log("Moving");
-            //}
-            //else if (_model.IsStunned) {
-            //    Debug.Log("Moving");
-            //}
-        }
-
-        public void Spawn() {
-
-        }
-
         public void Die() {
-
+            _model.Die();
         }
-
-        public bool IsReady { get { return _model.IsReady;  } }
-
     }
 }

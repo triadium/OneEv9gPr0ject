@@ -14,12 +14,9 @@ namespace OneEv9gPr0ject
                                _settings.Rigidbody,
                                _settings.Renderer);
 
-            // Container.Bind<HeroControllerState>().AsSingle();            
-            // Container.BindInterfacesTo<HeroController>().AsSingle();
-            Container.Bind<HeroAnimationState>().AsSingle().WithArguments(_settings.Animator);
-
-            Container.BindInterfacesTo<HeroAnimatorProcessor>().AsSingle();
+            Container.BindInterfacesTo<HeroAnimatorProcessor>().AsSingle().WithArguments(_settings.Animator);
             Container.BindInterfacesTo<HeroMovement>().AsSingle();
+            Container.BindInterfacesTo<HeroActions>().AsSingle();
 
             InstallSignals();
         }
@@ -32,7 +29,7 @@ namespace OneEv9gPr0ject
                 .ToMethod<HeroModel>(x => x.Ready)
                 .FromResolve();
             Container.BindSignal<HeroDiedSignal>()
-                .ToMethod<HeroModel>(x => x.Dead)
+                .ToMethod<HeroModel>(x => x.Died)
                 .FromResolve();
         }
 
