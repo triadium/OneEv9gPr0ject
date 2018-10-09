@@ -14,8 +14,8 @@ MonoBehaviour:
   GameInstaller:
     HeroPrefab: {fileID: 1123100437654882, guid: 304aabbda87cc484cb6f64f702d37cc4,
       type: 2}
-    PowerOrbPrefab: {fileID: 0}
-    MonsterPrefab: {fileID: 0}
+    TrainingBlockPrefab: {fileID: 1550441804559908, guid: 866d310f80fba4f4b9420794c1008140,
+      type: 2}
   Hero:
     Movement:
       MoveSpeed: 1

@@ -296,6 +296,7 @@ MonoBehaviour:
     Collider: {fileID: 61992743681855520}
     Rigidbody: {fileID: 50303203577055642}
     Renderer: {fileID: 212888607529681242}
+    ViewTransform: {fileID: 4038710359997650}
 --- !u!114 &114825699517407794
 MonoBehaviour:
   m_ObjectHideFlags: 1

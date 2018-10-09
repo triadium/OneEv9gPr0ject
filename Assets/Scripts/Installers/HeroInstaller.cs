@@ -12,7 +12,8 @@ namespace OneEv9gPr0ject
             Container.Bind<HeroModel>().AsSingle()
                 .WithArguments(_settings.Collider,
                                _settings.Rigidbody,
-                               _settings.Renderer);
+                               _settings.Renderer,
+                               _settings.ViewTransform);
 
             Container.BindInterfacesTo<HeroAnimatorProcessor>().AsSingle().WithArguments(_settings.Animator);
             Container.BindInterfacesTo<HeroMovement>().AsSingle();
@@ -40,6 +41,7 @@ namespace OneEv9gPr0ject
             public Collider2D Collider;
             public Rigidbody2D Rigidbody;
             public SpriteRenderer Renderer;
+            public Transform ViewTransform;
         }
     }
 }

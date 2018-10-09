@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HeroFist
   - HeroHeel
+  - Canvas
   layers:
   - Default
   - TransparentFX

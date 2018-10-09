@@ -13,12 +13,14 @@ namespace OneEv9gPr0ject
     {
         private readonly Collider2D _collider;
         private readonly Rigidbody2D _rigidbody;
-        private readonly SpriteRenderer _renderer;
+        // private readonly SpriteRenderer _renderer;
+        private readonly Transform _viewTransform;
 
-        public HeroModel(Collider2D collider, Rigidbody2D rigidbody, SpriteRenderer renderer) {
+        public HeroModel(Collider2D collider, Rigidbody2D rigidbody, SpriteRenderer renderer, Transform viewTransform) {
             _collider = collider;
             _rigidbody = rigidbody;
-            _renderer = renderer;
+            // _renderer = renderer;
+            _viewTransform = viewTransform;
 
             IsReady = false;
         }
@@ -93,7 +95,9 @@ namespace OneEv9gPr0ject
 
         public bool IsFacingLeft { get; private set; }
         public void Turn(bool toLeft) {
-            _renderer.flipX = toLeft;
+            Vector3 localScale = _viewTransform.localScale;
+            localScale.x = toLeft ? -1 : 1;
+            _viewTransform.localScale = localScale;
             IsFacingLeft = toLeft;
         }
     }

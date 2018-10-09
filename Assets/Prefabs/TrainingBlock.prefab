@@ -98,6 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4471305970642934}
+  - component: {fileID: 114801336522469904}
   m_Layer: 0
   m_Name: TrainBlock Installer
   m_TagString: Untagged
@@ -116,10 +117,25 @@ GameObject:
   - component: {fileID: 114645964988088590}
   - component: {fileID: 61879890192716508}
   - component: {fileID: 114710454612550382}
-  - component: {fileID: 114122163216642978}
+  - component: {fileID: 114060562753827844}
   m_Layer: 0
-  m_Name: TrainBlock
+  m_Name: TrainingBlock
   m_TagString: Respawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1555395218914072
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4942632711132048}
+  m_Layer: 0
+  m_Name: Health Bar Holder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4424691928899148}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4424691928899148
 Transform:
@@ -163,6 +179,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4942632711132048}
   - {fileID: 4552325708353292}
   - {fileID: 4089212390012102}
   - {fileID: 4435397825613884}
@@ -178,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1550441804559908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.46, y: -0.032, z: -0.3}
+  m_LocalPosition: {x: 0, y: 0, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4471305970642934}
@@ -197,7 +214,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4424691928899148}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4471305970642934
 Transform:
@@ -223,7 +240,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4424691928899148}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4494782769116106
 Transform:
@@ -236,7 +253,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4424691928899148}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4552325708353292
 Transform:
@@ -246,6 +263,19 @@ Transform:
   m_GameObject: {fileID: 1407643073689968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.303, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4424691928899148}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4942632711132048
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1555395218914072}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.439, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4424691928899148}
@@ -263,7 +293,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.234027, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -274,9 +304,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14960825, y: 0.75266194}
+  m_Size: {x: 0.61766225, y: 0.75266194}
   m_EdgeRadius: 0
---- !u!114 &114122163216642978
+--- !u!114 &114060562753827844
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,13 +314,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1550441804559908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d11d5149abcdc5c4f8b860bde167f5b0, type: 3}
+  m_Script: {fileID: 11500000, guid: cac3c0d894de8314eb47ad8f2d709427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4431244053177380}
-  canvasRect: {fileID: 0}
-  myRect: {fileID: 0}
-  offset: {x: 0, y: 0.39, z: 0}
+  maxHealth: 93
+  currentHealth: 93
+  healthBarHolder: {fileID: 4942632711132048}
 --- !u!114 &114645964988088590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -302,7 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _installers: []
+  _installers:
+  - {fileID: 114801336522469904}
   _installerPrefabs: []
   _scriptableObjectInstallers: []
   _autoRun: 1
@@ -318,6 +348,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b02aee0f887834fa2589329ee70bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114801336522469904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1522066228503200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6362a8cd0e38a1047a10957cd41e215f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings:
+    HealthBarPrefab: {fileID: 1212109322137170, guid: 2c8fb3577cf3c294fa253ff4986a9ce3,
+      type: 2}
 --- !u!212 &212528247603857950
 SpriteRenderer:
   m_ObjectHideFlags: 1

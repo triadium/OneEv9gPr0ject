@@ -14,6 +14,7 @@ namespace OneEv9gPr0ject
         public override void InstallBindings() {
             SignalBusInstaller.Install(Container);
             InstallHero();
+            InstallTrainingBlock();
         }
 
         private void InstallHero() {
@@ -29,12 +30,16 @@ namespace OneEv9gPr0ject
             Container.BindInterfacesTo<HeroController>().AsSingle();
         }
 
+        private void InstallTrainingBlock() {            
+            Container.BindFactory<TrainingBlockFacade, TrainingBlockFacade.Factory>()
+                .FromComponentInNewPrefab(_settings.TrainingBlockPrefab);
+        }
+
         [Serializable]
         public class Settings
         {
             public GameObject HeroPrefab;
-            public GameObject PowerOrbPrefab;
-            public GameObject MonsterPrefab;
+            public GameObject TrainingBlockPrefab;
         }
     }
 }

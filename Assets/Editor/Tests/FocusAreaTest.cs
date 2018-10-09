@@ -169,19 +169,19 @@ namespace OneEv9gPr0ject.Tests
             }
         }
 
-        public class UpdateTest
-        {
-            Bounds maxBounds;
-            Bounds targetBounds;
-            Vector2 size;
+        //public class UpdateTest
+        //{
+        //    Bounds maxBounds;
+        //    Bounds targetBounds;
+        //    Vector2 size;
 
-            [SetUp]
-            public void SetupEveryTest() {
-                size = new Vector2(30, 30);
-                maxBounds = new Bounds(Vector2.zero, new Vector2(300, 300));
-                targetBounds = new Bounds(Vector2.zero, new Vector2(10, 10));
-            }
-        }
+        //    [SetUp]
+        //    public void SetupEveryTest() {
+        //        size = new Vector2(30, 30);
+        //        maxBounds = new Bounds(Vector2.zero, new Vector2(300, 300));
+        //        targetBounds = new Bounds(Vector2.zero, new Vector2(10, 10));
+        //    }
+        //}
 
         //[UnityTest]
         //public IEnumerator NewTestScriptWithEnumeratorPasses() {
